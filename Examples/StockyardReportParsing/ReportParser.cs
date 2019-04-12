@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
 using Sprache;
 
 namespace StockyardReportParsing
 {
     static class ReportParser
     {
-        public static readonly Parser<int> Integer = 
+        public static readonly Parser<int> Integer =
             Parse.Digit.AtLeastOnce().Text().Select(int.Parse);
 
         public static readonly Parser<int> SingleWeight = Integer;
@@ -41,7 +43,8 @@ namespace StockyardReportParsing
             from text in Parse.Letter.Or(Parse.Char(' ')).AtLeastOnce().Text()
             select text;
 
-        public static readonly Parser<GradeEntry> GradeEntry =
+        public static readonly Parser<GradeEntry> GradeEntryLine =
+            from indent in Parse.Char(' ').Many()
             from head in Integer
             from _1 in Separator
             from weightRange in WeightRange
@@ -54,5 +57,19 @@ namespace StockyardReportParsing
             from description in GradeEntryDescription.Optional()
             from eol in Parse.LineEnd
             select new GradeEntry(head, weightRange, avgWeight, priceRange, avgPrice, description.GetOrElse(""));
+
+        public static readonly Parser<string> GradeInfoDescriptionLine =
+            from indent in Parse.Char(' ').AtLeastOnce()
+            from description in Parse.CharExcept(new[]{'\n','\r'}).AtLeastOnce().Text()
+            from eol in Parse.LineEnd
+            select description.Trim();
+
+        public static readonly Parser<GradeInfo> GradeInfo = 
+            from description in GradeInfoDescriptionLine
+            from tableHeader in Parse.String(" Head   Wt Range   Avg Wt    Price Range   Avg Price")
+            from nl in Parse.LineEnd
+            from entries in GradeEntryLine.AtLeastOnce()
+            from blank in Parse.LineEnd
+            select new GradeInfo(description, entries);
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using Sprache;
 
@@ -58,7 +59,7 @@ namespace StockyardReportParsing
         [Test]
         public void ShouldParseGradeEntry()
         {
-            var entry = ReportParser.GradeEntry.Parse("1     1095      1095       115.00         115.00\n");
+            var entry = ReportParser.GradeEntryLine.Parse("1     1095      1095       115.00         115.00\n");
 
             Assert.That(entry.Head, Is.EqualTo(1));
 
@@ -74,7 +75,7 @@ namespace StockyardReportParsing
         [Test]
         public void ShouldParseGradeEntryWithRanges()
         {
-            var entry = ReportParser.GradeEntry.Parse("20   1300-1485   1399    117.00-126.50     125.32\n");
+            var entry = ReportParser.GradeEntryLine.Parse("20   1300-1485   1399    117.00-126.50     125.32\n");
 
             Assert.That(entry.Head, Is.EqualTo(20));
 
@@ -90,9 +91,32 @@ namespace StockyardReportParsing
         [Test]
         public void ShouldParseGradeEntryWithDescription()
         {
-            var entry = ReportParser.GradeEntry.Parse("1     1095      1095       115.00         115.00 Some text\n");
+            var entry = ReportParser.GradeEntryLine.Parse("1     1095      1095       115.00         115.00 Some text\n");
 
             Assert.That(entry.Description, Is.EqualTo("Some text"));
+        }
+
+        [TestCase("              Slaughter Steers Choice and Prime 2-3\n", "Slaughter Steers Choice and Prime 2-3")]
+        [TestCase("               Slaughter Cows Premium White 65-75%\n","Slaughter Cows Premium White 65-75%")]
+        [TestCase("                    Slaughter Bulls Y.G. 1-2\n","Slaughter Bulls Y.G. 1-2")]
+        public void ShouldParseGradeInfoDescriptionLine(string input, string expected)
+        {
+            Assert.That(ReportParser.GradeInfoDescriptionLine.Parse(input), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ShouldParseGradeInfo()
+        {
+            var input = @"              Slaughter Steers Choice and Prime 2-3
+ Head   Wt Range   Avg Wt    Price Range   Avg Price
+   18   1200-1296   1247    128.00-130.25     129.09
+   24   1323-1328   1325    128.00-130.00     129.33
+
+";
+            var gradeInfo = ReportParser.GradeInfo.Parse(input);
+
+            Assert.That(gradeInfo.Description, Is.EqualTo("Slaughter Steers Choice and Prime 2-3"));
+            Assert.That(gradeInfo.Entries.Count(), Is.EqualTo(2));
         }
 
         static decimal ToDecimal(int i) => ((decimal)i) / 100;
