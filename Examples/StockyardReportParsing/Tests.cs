@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Sprache;
@@ -117,6 +118,16 @@ namespace StockyardReportParsing
 
             Assert.That(gradeInfo.Description, Is.EqualTo("Slaughter Steers Choice and Prime 2-3"));
             Assert.That(gradeInfo.Entries.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ShouldParseRealReport()
+        {
+            var reportText = File.ReadAllText("is_ls132.txt");
+
+            var report = ReportParser.Report.Parse(reportText);
+
+            Assert.That(report.Count(), Is.EqualTo(21));
         }
 
         static decimal ToDecimal(int i) => ((decimal)i) / 100;

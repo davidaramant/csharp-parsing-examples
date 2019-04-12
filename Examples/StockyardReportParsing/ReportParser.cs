@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
+using System.Threading.Tasks.Dataflow;
 using Sprache;
 
 namespace StockyardReportParsing
@@ -59,7 +59,7 @@ namespace StockyardReportParsing
             select new GradeEntry(head, weightRange, avgWeight, priceRange, avgPrice, description.GetOrElse(""));
 
         public static readonly Parser<string> GradeInfoDescriptionLine =
-            from indent in Parse.Char(' ').AtLeastOnce()
+            from indent in Parse.Char(' ').Many()
             from description in Parse.CharExcept(new[]{'\n','\r'}).AtLeastOnce().Text()
             from eol in Parse.LineEnd
             select description.Trim();
@@ -71,5 +71,28 @@ namespace StockyardReportParsing
             from entries in GradeEntryLine.AtLeastOnce()
             from blank in Parse.LineEnd
             select new GradeInfo(description, entries);
+
+        private static readonly Parser<string> Disclaimer =
+            from open in Parse.String("***")
+            from text in Parse.CharExcept('*').Many()
+            from close in Parse.String("***")
+            select "";
+
+        private static readonly Parser<string> Header =
+            from boringText in Parse.CharExcept('*').Many()
+            from disclaimer in Disclaimer
+            from ws in Parse.WhiteSpace.Many()
+            select "";
+
+        private static readonly Parser<string> Footer =
+            from source in Parse.String("Source")
+            from rest in Parse.AnyChar.Many()
+            select string.Empty;
+
+        public static readonly Parser<IEnumerable<GradeInfo>> Report =
+            from header in Header
+            from info in GradeInfo.Many()
+            from footer in Footer
+            select info;
     }
 }
