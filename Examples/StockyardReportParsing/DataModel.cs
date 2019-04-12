@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace StockyardReportParsing
 {
+    [DebuggerDisplay("{ToString()}")]
     sealed class Range<T>
     {
         public T Min { get; }
@@ -16,8 +19,11 @@ namespace StockyardReportParsing
         public Range(T value) : this(value, value)
         {
         }
+
+        public override string ToString() => $"{Min}-{Max}";
     }
 
+    [DebuggerDisplay("{ToString()}")]
     sealed class GradeEntry
     {
         public int Head { get; }
@@ -42,17 +48,23 @@ namespace StockyardReportParsing
             AveragePrice = averagePrice;
             Description = description;
         }
+
+        public override string ToString() =>
+            $"Head: {Head}, Weight: {Weight} ({AverageWeight} avg), Price: {Price} ({AveragePrice} avg), Description: {Description}";
     }
 
+    [DebuggerDisplay("{ToString()}")]
     sealed class GradeInfo
     {
         public string Description { get; }
-        public IEnumerable<GradeEntry> Entries { get; }
+        public ImmutableList<GradeEntry> Entries { get; }
 
         public GradeInfo(string description, IEnumerable<GradeEntry> entries)
         {
             Description = description;
-            Entries = entries;
+            Entries = entries.ToImmutableList();
         }
+
+        public override string ToString() => $"{Description} ({Entries.Count} entries)";
     }
 }
