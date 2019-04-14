@@ -1,0 +1,33 @@
+﻿using System.Linq;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
+using SectorDirector.Core.FormatModels.Udmf;
+using SectorDirector.Core.FormatModels.Wad;
+
+namespace UdmfParsingBenchmarks
+{
+    [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 1, invocationCount: 1)]
+    [CsvExporter]
+    public class LoadZDCMP2Benchmarks
+    {
+        [Benchmark]
+        public MapData Pidgin()
+        {
+            using (var reader = WadReader.Read("zdcmp2.wad"))
+            {
+                var stream = reader.GetLumpStream(reader.Directory.First(l => l.Name == "TEXTMAP"));
+                return MapData.LoadFromUsingPidgin(stream);
+            }
+        }
+
+        [Benchmark]
+        public MapData Superpower()
+        {
+            using (var reader = WadReader.Read("zdcmp2.wad"))
+            {
+                var stream = reader.GetLumpStream(reader.Directory.First(l => l.Name == "TEXTMAP"));
+                return MapData.LoadFromUsingSuperpower(stream);
+            }
+        }
+    }
+}

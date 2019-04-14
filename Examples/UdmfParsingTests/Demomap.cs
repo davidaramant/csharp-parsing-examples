@@ -3,7 +3,7 @@
 
 using SectorDirector.Core.FormatModels.Udmf;
 
-namespace SectorDirector.Core.Tests
+namespace UdmfParsingTests
 {
     public sealed class DemoMap
     {

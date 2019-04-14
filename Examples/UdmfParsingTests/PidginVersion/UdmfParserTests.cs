@@ -8,9 +8,9 @@ using NUnit.Framework;
 using Pidgin;
 using SectorDirector.Core.FormatModels.Common;
 using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
+using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing.PidginVersion
+namespace UdmfParsingTests.PidginVersion
 {
     [TestFixture]
     public sealed class UdmfParserTests

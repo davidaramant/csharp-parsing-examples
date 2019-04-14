@@ -5,7 +5,7 @@ using System;
 using System.Collections.Immutable;
 using SectorDirector.Core.FormatModels.Common;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree
 {
     public sealed class Block : IGlobalExpression, IEquatable<Block>
     {

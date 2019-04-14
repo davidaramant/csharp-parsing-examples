@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SectorDirector.Core.FormatModels.Common;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
+using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
 
 namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion
 {

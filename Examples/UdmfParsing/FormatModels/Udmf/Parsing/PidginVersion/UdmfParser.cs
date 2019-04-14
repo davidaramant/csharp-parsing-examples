@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 using Pidgin;
 using Pidgin.Comment;
 using SectorDirector.Core.FormatModels.Common;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
+using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 

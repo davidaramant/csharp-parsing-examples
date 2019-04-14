@@ -9,7 +9,7 @@ using SectorDirector.DataModelGenerator.Utilities;
 
 namespace SectorDirector.DataModelGenerator
 {
-    public static class UdmfPidginSemanticAnalyzerGenerator
+    public static class UdmfSuperpowerSemanticAnalyzerGenerator
     {
         public static void WriteTo(StreamWriter stream)
         {
@@ -20,9 +20,9 @@ namespace SectorDirector.DataModelGenerator
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
 using System.CodeDom.Compiler;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
+using SectorDirector.Core.FormatModels.Udmf.Parsing.SuperpowerVersion.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion").OpenParen()
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.SuperpowerVersion").OpenParen()
                     .Line($"[GeneratedCode(\"{CurrentLibraryInfo.Name}\", \"{CurrentLibraryInfo.Version}\")]")
                     .Line("public static partial class UdmfSemanticAnalyzer").OpenParen();
 
@@ -99,7 +99,7 @@ namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion").OpenPare
                 OpenParen();
 
             WriteFieldSwitch(output, block, variable);
-            
+
             output.
                 CloseParen().
                 Line($"return {variable};").

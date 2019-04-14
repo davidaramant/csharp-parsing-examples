@@ -10,7 +10,7 @@ using SectorDirector.Core.FormatModels.Udmf;
 using SectorDirector.Core.FormatModels.Wad;
 using Is = NUnit.DeepObjectCompare.Is;
 
-namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing.PidginVersion
+namespace UdmfParsingTests.PidginVersion
 {
     [TestFixture]
     public sealed class UdmfSemanticAnalyzerTests

@@ -4,7 +4,7 @@
 using System;
 using SectorDirector.Core.FormatModels.Common;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree
 {
     public sealed class Assignment : IGlobalExpression, IEquatable<Assignment>
     {
