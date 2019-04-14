@@ -10,7 +10,7 @@ using SectorDirector.Core.FormatModels.Udmf;
 using SectorDirector.Core.FormatModels.Wad;
 using Is = NUnit.DeepObjectCompare.Is;
 
-namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing
+namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing.PidginVersion
 {
     [TestFixture]
     public sealed class UdmfSemanticAnalyzerTests
@@ -122,7 +122,7 @@ namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing
                     foreach (var mapName in wadReader.GetMapNames())
                     {
                         TestContext.WriteLine(" * " + mapName);
-                        MapData.LoadFrom(wadReader.GetMapStream(mapName));
+                        MapData.LoadFromUsingPidgin(wadReader.GetMapStream(mapName));
                     }
                 }
             }
@@ -144,7 +144,7 @@ namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing
 
                 stream.Position = 0;
 
-                return MapData.LoadFrom(stream);
+                return MapData.LoadFromUsingPidgin(stream);
             }
         }
 
@@ -152,7 +152,7 @@ namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing
         {
             using (var stream = new MemoryStream(Encoding.ASCII.GetBytes(rawUdmf)))
             {
-                return MapData.LoadFrom(stream);
+                return MapData.LoadFromUsingPidgin(stream);
             }
         }
 

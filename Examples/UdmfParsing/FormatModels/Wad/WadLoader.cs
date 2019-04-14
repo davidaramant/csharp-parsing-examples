@@ -9,14 +9,14 @@ namespace SectorDirector.Core.FormatModels.Wad
 {
     public static class WadLoader
     {
-        public static List<MapData> Load(string path)
+        public static List<MapData> LoadUsingPidgin(string path)
         {
             var maps = new List<MapData>();
 
             using (var wad = WadReader.Read(path))
             {
                 maps.AddRange(
-                    wad.GetMapNames().Select(name => MapData.LoadFrom(wad.GetMapStream(name))));
+                    wad.GetMapNames().Select(name => MapData.LoadFromUsingPidgin(wad.GetMapStream(name))));
             }
 
             return maps;

@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using Pidgin;
 using Pidgin.Comment;
 using SectorDirector.Core.FormatModels.Common;
@@ -11,7 +10,7 @@ using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion
 {
     public static class UdmfParser
     {

@@ -4,9 +4,9 @@
 using System.CodeDom.Compiler;
 using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion
 {
-    [GeneratedCode("DataModelGenerator", "1.0.0.0")]
+    [GeneratedCode("UdmfParserGenerator", "1.0.0.0")]
     public static partial class UdmfSemanticAnalyzer
     {
         static partial void ProcessGlobalAssignment(MapData map, Assignment assignment)

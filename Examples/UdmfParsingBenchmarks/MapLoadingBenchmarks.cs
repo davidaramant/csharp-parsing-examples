@@ -20,7 +20,7 @@ namespace Benchmarks
         {
             using (var wad = WadReader.Read("freedoom2-udmf.wad"))
             {
-                return MapData.LoadFrom(wad.GetMapStream("MAP28"));
+                return MapData.LoadFromUsingPidgin(wad.GetMapStream("MAP28"));
             }
         }
 
@@ -29,7 +29,7 @@ namespace Benchmarks
             Console.WriteLine("Loading all Freedoom maps...");
             using (new Timed())
             {
-                return WadLoader.Load("freedoom2-udmf.wad");
+                return WadLoader.LoadUsingPidgin("freedoom2-udmf.wad");
             }
         }
 
@@ -41,7 +41,7 @@ namespace Benchmarks
                 var stream = reader.GetLumpStream(reader.Directory.First(l => l.Name == "TEXTMAP"));
                 using (new Timed())
                 {
-                    return MapData.LoadFrom(stream);
+                    return MapData.LoadFromUsingPidgin(stream);
                 }
             }
         }

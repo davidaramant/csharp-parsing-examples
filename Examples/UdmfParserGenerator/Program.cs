@@ -10,7 +10,7 @@ namespace SectorDirector.DataModelGenerator
     {
         static void Main(string[] args)
         {
-            var solutionBasePath = Path.Combine(Enumerable.Repeat("..", 5).ToArray());
+            var solutionBasePath = Path.Combine(Enumerable.Repeat("..", 4).ToArray());
             var corePath = Path.Combine(solutionBasePath, "UdmfParsing");
             var udmfPath = Path.Combine(corePath, "FormatModels", "Udmf");
             var udmfParsingPath = Path.Combine(udmfPath, "Parsing");
@@ -18,9 +18,9 @@ namespace SectorDirector.DataModelGenerator
             // Create data model
             UdmfModelGenerator.WriteToPath(udmfPath);
 
-            using (var analyzerStream = File.CreateText(Path.Combine(udmfParsingPath, "UdmfSemanticAnalyzer.Generated.cs")))
+            using (var analyzerStream = File.CreateText(Path.Combine(udmfParsingPath, "PidginVersion", "UdmfSemanticAnalyzer.Generated.cs")))
             {
-                UdmfSemanticAnalyzerGenerator.WriteTo(analyzerStream);
+                UdmfPidginSemanticAnalyzerGenerator.WriteTo(analyzerStream);
             }
         }
     }

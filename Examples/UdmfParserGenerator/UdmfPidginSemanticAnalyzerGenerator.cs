@@ -9,7 +9,7 @@ using SectorDirector.DataModelGenerator.Utilities;
 
 namespace SectorDirector.DataModelGenerator
 {
-    public static class UdmfSemanticAnalyzerGenerator
+    public static class UdmfPidginSemanticAnalyzerGenerator
     {
         public static void WriteTo(StreamWriter stream)
         {
@@ -22,7 +22,7 @@ namespace SectorDirector.DataModelGenerator
 using System.CodeDom.Compiler;
 using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing").OpenParen()
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion").OpenParen()
                     .Line($"[GeneratedCode(\"{CurrentLibraryInfo.Name}\", \"{CurrentLibraryInfo.Version}\")]")
                     .Line("public static partial class UdmfSemanticAnalyzer").OpenParen();
 

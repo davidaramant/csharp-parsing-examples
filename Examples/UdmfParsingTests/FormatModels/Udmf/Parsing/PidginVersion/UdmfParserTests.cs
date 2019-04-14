@@ -7,10 +7,10 @@ using System.Text;
 using NUnit.Framework;
 using Pidgin;
 using SectorDirector.Core.FormatModels.Common;
-using SectorDirector.Core.FormatModels.Udmf.Parsing;
+using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion;
 using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing
+namespace SectorDirector.Core.Tests.FormatModels.Udmf.Parsing.PidginVersion
 {
     [TestFixture]
     public sealed class UdmfParserTests

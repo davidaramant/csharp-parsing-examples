@@ -4,23 +4,22 @@
 using System.IO;
 using System.Text;
 using Pidgin;
-using SectorDirector.Core.FormatModels.Udmf.Parsing;
 
 namespace SectorDirector.Core.FormatModels.Udmf
 {
     public sealed partial class MapData
     {
-        public static MapData LoadFrom(TextReader reader)
+        public static MapData LoadFromUsingPidgin(TextReader reader)
         {
-            var result = UdmfParser.TranslationUnit.ParseOrThrow(reader);
-            return UdmfSemanticAnalyzer.Process(result);
+            var result = Parsing.PidginVersion.UdmfParser.TranslationUnit.ParseOrThrow(reader);
+            return Parsing.PidginVersion.UdmfSemanticAnalyzer.Process(result);
         }
 
-        public static MapData LoadFrom(Stream stream)
+        public static MapData LoadFromUsingPidgin(Stream stream)
         {
             using (var textReader = new StreamReader(stream, Encoding.ASCII))
             {
-                return LoadFrom(textReader);
+                return LoadFromUsingPidgin(textReader);
             }
         }
     }

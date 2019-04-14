@@ -9,7 +9,7 @@ using SectorDirector.Core.FormatModels.Udmf.WritingExtensions;
 
 namespace SectorDirector.Core.FormatModels.Udmf
 {
-    [GeneratedCode("DataModelGenerator", "1.0.0.0")]
+    [GeneratedCode("UdmfParserGenerator", "1.0.0.0")]
     public sealed partial class Sector
     {
         private bool _textureFloorHasBeenSet = false;

@@ -1,13 +1,12 @@
 ﻿// Copyright (c) 2019, David Aramant
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using SectorDirector.Core.FormatModels.Common;
 using SectorDirector.Core.FormatModels.Udmf.Parsing.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing
+namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion
 {
     public static partial class UdmfSemanticAnalyzer
     {
