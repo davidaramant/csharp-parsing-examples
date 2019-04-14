@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockyardReportParsing", "StockyardReportParsing\StockyardReportParsing.csproj", "{BC2D9D1F-596D-4450-9AB6-FE07CC1EE0B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdmfParsing", "UdmfParsing\UdmfParsing.csproj", "{324F75E9-1C11-4708-B054-56891D160204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdmfParsingTests", "UdmfParsingTests\UdmfParsingTests.csproj", "{4BBB0378-E39B-4C3E-AB17-4A27FC586FAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdmfParsingBenchmarks", "UdmfParsingBenchmarks\UdmfParsingBenchmarks.csproj", "{3C763162-23B2-4B3E-B05E-D90D7F97D8C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdmfParserGenerator", "UdmfParserGenerator\UdmfParserGenerator.csproj", "{2C857E5E-4AC2-4311-86DC-B542715CDA17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{BC2D9D1F-596D-4450-9AB6-FE07CC1EE0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC2D9D1F-596D-4450-9AB6-FE07CC1EE0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC2D9D1F-596D-4450-9AB6-FE07CC1EE0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{324F75E9-1C11-4708-B054-56891D160204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324F75E9-1C11-4708-B054-56891D160204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324F75E9-1C11-4708-B054-56891D160204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324F75E9-1C11-4708-B054-56891D160204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BBB0378-E39B-4C3E-AB17-4A27FC586FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBB0378-E39B-4C3E-AB17-4A27FC586FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBB0378-E39B-4C3E-AB17-4A27FC586FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBB0378-E39B-4C3E-AB17-4A27FC586FAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C763162-23B2-4B3E-B05E-D90D7F97D8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C763162-23B2-4B3E-B05E-D90D7F97D8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C763162-23B2-4B3E-B05E-D90D7F97D8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C763162-23B2-4B3E-B05E-D90D7F97D8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C857E5E-4AC2-4311-86DC-B542715CDA17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C857E5E-4AC2-4311-86DC-B542715CDA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C857E5E-4AC2-4311-86DC-B542715CDA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C857E5E-4AC2-4311-86DC-B542715CDA17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
