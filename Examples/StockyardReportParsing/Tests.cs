@@ -11,12 +11,15 @@ namespace StockyardReportParsing
         [Test]
         public void ShouldParseSingleWeight()
         {
-            Assert.That(ReportParser.SingleWeight.Parse("123"), Is.EqualTo(123));
+            Assert.That(
+                ReportParser.SingleWeight.Parse("123"), 
+                Is.EqualTo(123));
         }
 
         [TestCase("1-2", 1, 2)]
         [TestCase("100-200", 100, 200)]
-        public void ShouldParseExplicitWeightRange(string input, int expectedMin, int expectedMax)
+        public void ShouldParseExplicitWeightRange(
+            string input, int expectedMin, int expectedMax)
         {
             var range = ReportParser.ExplicitWeightRange.Parse(input);
             Assert.That(range.Min, Is.EqualTo(expectedMin));
@@ -26,7 +29,8 @@ namespace StockyardReportParsing
         [TestCase("1-2", 1, 2)]
         [TestCase("100-200", 100, 200)]
         [TestCase("123", 123, 123)]
-        public void ShouldParseWeightRange(string input, int expectedMin, int expectedMax)
+        public void ShouldParseWeightRange(
+            string input, int expectedMin, int expectedMax)
         {
             var range = ReportParser.WeightRange.Parse(input);
             Assert.That(range.Min, Is.EqualTo(expectedMin));
@@ -36,12 +40,15 @@ namespace StockyardReportParsing
         [Test]
         public void ShouldParseSinglePrice()
         {
-            Assert.That(ReportParser.SinglePrice.Parse("123.45"), Is.EqualTo(ToDecimal(123_45)));
+            Assert.That(
+                ReportParser.SinglePrice.Parse("123.45"), 
+                Is.EqualTo(ToDecimal(123_45)));
         }
 
         [TestCase("1.24-2.78", 1_24, 2_78)]
         [TestCase("100.00-200.00", 100_00, 200_00)]
-        public void ShouldParseExplicitPriceRange(string input, int expectedMin, int expectedMax)
+        public void ShouldParseExplicitPriceRange(
+            string input, int expectedMin, int expectedMax)
         {
             var range = ReportParser.ExplicitPriceRange.Parse(input);
             Assert.That(range.Min, Is.EqualTo(ToDecimal(expectedMin)));
@@ -50,7 +57,8 @@ namespace StockyardReportParsing
 
         [TestCase("100.00-200.00", 100_00, 200_00)]
         [TestCase("123.45", 123_45, 123_45)]
-        public void ShouldParsePriceRange(string input, int expectedMin, int expectedMax)
+        public void ShouldParsePriceRange(
+            string input, int expectedMin, int expectedMax)
         {
             var range = ReportParser.PriceRange.Parse(input);
             Assert.That(range.Min, Is.EqualTo(ToDecimal(expectedMin)));

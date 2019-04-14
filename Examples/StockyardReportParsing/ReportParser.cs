@@ -19,13 +19,14 @@ namespace StockyardReportParsing
             select new Range<int>(min, max);
 
         public static readonly Parser<Range<int>> WeightRange =
-            ExplicitWeightRange.Or(SingleWeight.Select(weight => new Range<int>(weight)));
+            ExplicitWeightRange.Or(
+                SingleWeight.Select(weight => new Range<int>(weight)));
 
         public static readonly Parser<decimal> SinglePrice =
-            from digits in Parse.Digit.AtLeastOnce().Text()
+            from dollars in Parse.Digit.AtLeastOnce().Text()
             from period in Parse.Char('.')
             from cents in Parse.Digit.Repeat(2).Text()
-            select decimal.Parse(digits + "." + cents);
+            select decimal.Parse(dollars + "." + cents);
 
         public static readonly Parser<Range<decimal>> ExplicitPriceRange =
             from min in SinglePrice
@@ -34,12 +35,14 @@ namespace StockyardReportParsing
             select new Range<decimal>(min, max);
 
         public static readonly Parser<Range<decimal>> PriceRange =
-            ExplicitPriceRange.Or(SinglePrice.Select(price => new Range<decimal>(price)));
+            ExplicitPriceRange.Or(
+                SinglePrice.Select(price => new Range<decimal>(price)));
 
-        private static readonly Parser<IEnumerable<char>> Separator = Parse.Char(' ').AtLeastOnce();
+        private static readonly Parser<IEnumerable<char>> Separator = 
+            Parse.Char(' ').AtLeastOnce();
 
         public static readonly Parser<string> GradeEntryDescription =
-            from leading in Parse.Char(' ').AtLeastOnce()
+            from leading in Separator
             from text in Parse.Letter.Or(Parse.Char(' ')).AtLeastOnce().Text()
             select text;
 
@@ -56,7 +59,13 @@ namespace StockyardReportParsing
             from avgPrice in SinglePrice
             from description in GradeEntryDescription.Optional()
             from eol in Parse.LineEnd
-            select new GradeEntry(head, weightRange, avgWeight, priceRange, avgPrice, description.GetOrElse(""));
+            select new GradeEntry(
+                head, 
+                weightRange, 
+                avgWeight, 
+                priceRange, 
+                avgPrice, 
+                description.GetOrElse(""));
 
         public static readonly Parser<string> GradeInfoDescriptionLine =
             from indent in Parse.Char(' ').Many()
