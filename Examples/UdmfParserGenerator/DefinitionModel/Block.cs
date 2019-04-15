@@ -4,9 +4,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using SectorDirector.DataModelGenerator.Utilities;
+using UdmfParserGenerator.Utilities;
 
-namespace SectorDirector.DataModelGenerator.DefinitionModel
+namespace UdmfParserGenerator.DefinitionModel
 {
     [DebuggerDisplay("{" + nameof(CodeName) + "}")]
     public sealed class Block

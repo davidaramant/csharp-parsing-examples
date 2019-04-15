@@ -4,7 +4,7 @@
 using System;
 using System.Reflection;
 
-namespace SectorDirector.DataModelGenerator.Utilities
+namespace UdmfParserGenerator.Utilities
 {
     public static class CurrentLibraryInfo
     {

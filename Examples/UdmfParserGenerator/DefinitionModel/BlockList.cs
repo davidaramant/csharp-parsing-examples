@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2019, David Aramant
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
-using SectorDirector.DataModelGenerator.Utilities;
+using UdmfParserGenerator.Utilities;
 
-namespace SectorDirector.DataModelGenerator.DefinitionModel
+namespace UdmfParserGenerator.DefinitionModel
 {
     public class BlockList : IProperty
     {

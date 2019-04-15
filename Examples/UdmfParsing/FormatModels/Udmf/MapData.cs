@@ -43,5 +43,13 @@ namespace SectorDirector.Core.FormatModels.Udmf
             }
         }
 
+        public static MapData LoadFromUsingPiglet(Stream stream)
+        {
+            using (var textReader = new StreamReader(stream, Encoding.ASCII))
+            {
+                var sa = new Parsing.PigletVersion.UdmfSyntaxAnalyzer();
+                return Parsing.PigletVersion.UdmfParser.Parse(sa.Analyze(new Parsing.PigletVersion.UdmfLexer(textReader)));
+            }
+        }
     }
 }

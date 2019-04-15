@@ -4,7 +4,7 @@
 using System;
 using System.IO;
 
-namespace SectorDirector.DataModelGenerator.Utilities
+namespace UdmfParserGenerator.Utilities
 {
     public sealed class IndentedWriter : IDisposable
     {

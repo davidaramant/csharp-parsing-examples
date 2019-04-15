@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-
+    <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -15,6 +15,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UdmfParsing\UdmfParsing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="PigletVersion\TEXTMAP.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

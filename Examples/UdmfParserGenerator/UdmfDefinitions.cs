@@ -2,9 +2,9 @@
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
 using System.Collections.Generic;
-using SectorDirector.DataModelGenerator.DefinitionModel;
+using UdmfParserGenerator.DefinitionModel;
 
-namespace SectorDirector.DataModelGenerator
+namespace UdmfParserGenerator
 {
     public static class UdmfDefinitions
     {

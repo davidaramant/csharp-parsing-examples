@@ -7,9 +7,14 @@ using SectorDirector.Core.FormatModels.Wad;
 namespace UdmfParsingBenchmarks
 {
     [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 1, invocationCount: 1)]
-    [CsvExporter]
     public class LoadAllFreedoomMapsBenchmarks
     {
+        [Benchmark(Baseline = true)]
+        public List<MapData> Piglet()
+        {
+            return WadLoader.LoadUsingPiglet("freedoom2-udmf.wad");
+        }
+
         [Benchmark]
         public List<MapData> Pidgin()
         {

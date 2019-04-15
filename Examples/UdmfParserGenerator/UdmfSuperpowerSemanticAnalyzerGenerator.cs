@@ -4,10 +4,10 @@
 using System;
 using System.IO;
 using System.Linq;
-using SectorDirector.DataModelGenerator.DefinitionModel;
-using SectorDirector.DataModelGenerator.Utilities;
+using UdmfParserGenerator.DefinitionModel;
+using UdmfParserGenerator.Utilities;
 
-namespace SectorDirector.DataModelGenerator
+namespace UdmfParserGenerator
 {
     public static class UdmfSuperpowerSemanticAnalyzerGenerator
     {

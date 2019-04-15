@@ -1,0 +1,249 @@
+namespace = "Doom";
+lineDef
+{
+	v1 = 0;
+	v2 = 1;
+	sideFront = 0;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 2;
+	v2 = 3;
+	sideFront = 1;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 4;
+	v2 = 5;
+	sideFront = 2;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 5;
+	v2 = 0;
+	sideFront = 3;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 1;
+	v2 = 2;
+	sideFront = 4;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 1;
+	v2 = 4;
+	sideFront = 5;
+	twoSided = true;
+	sideBack = 6;
+}
+lineDef
+{
+	v1 = 6;
+	v2 = 4;
+	sideFront = 7;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 7;
+	v2 = 6;
+	sideFront = 8;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 8;
+	v2 = 9;
+	sideFront = 9;
+	blocking = true;
+	special = 11;
+}
+lineDef
+{
+	v1 = 9;
+	v2 = 7;
+	sideFront = 10;
+	blocking = true;
+}
+lineDef
+{
+	v1 = 3;
+	v2 = 7;
+	sideFront = 11;
+	twoSided = true;
+	dontPegTop = true;
+	dontPegBottom = true;
+	sideBack = 12;
+}
+lineDef
+{
+	v1 = 3;
+	v2 = 8;
+	sideFront = 13;
+	blocking = true;
+}
+sideDef
+{
+	sector = 0;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 1;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 0;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 0;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 1;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 0;
+	textureTop = "STEPTOP";
+	textureBottom = "STEPTOP";
+}
+sideDef
+{
+	sector = 1;
+}
+sideDef
+{
+	sector = 1;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 1;
+	offsetX = 160;
+	textureMiddle = "STARTAN1";
+}
+sideDef
+{
+	sector = 2;
+	textureMiddle = "SW1COMM";
+}
+sideDef
+{
+	sector = 2;
+	textureMiddle = "SHAWN2";
+}
+sideDef
+{
+	sector = 1;
+	offsetX = 96;
+	textureTop = "STARTAN1";
+	textureBottom = "STARTAN1";
+}
+sideDef
+{
+	sector = 2;
+}
+sideDef
+{
+	sector = 2;
+	textureMiddle = "SHAWN2";
+}
+vertex
+{
+	x = 0;
+	y = 0;
+}
+vertex
+{
+	x = 0;
+	y = 256;
+}
+vertex
+{
+	x = 0;
+	y = 512;
+}
+vertex
+{
+	x = 96;
+	y = 512;
+}
+vertex
+{
+	x = 256;
+	y = 256;
+}
+vertex
+{
+	x = 256;
+	y = 0;
+}
+vertex
+{
+	x = 256;
+	y = 512;
+}
+vertex
+{
+	x = 160;
+	y = 512;
+}
+vertex
+{
+	x = 96;
+	y = 528;
+}
+vertex
+{
+	x = 160;
+	y = 528;
+}
+sector
+{
+	textureFloor = "FLOOR0_1";
+	textureCeiling = "CEIL1_1";
+	heightCeiling = 128;
+	lightLevel = 192;
+}
+sector
+{
+	textureFloor = "FLOOR0_1";
+	textureCeiling = "CEIL1_1";
+	heightFloor = 16;
+	heightCeiling = 112;
+}
+sector
+{
+	textureFloor = "FLAT23";
+	textureCeiling = "FLAT23";
+	heightFloor = 32;
+	heightCeiling = 96;
+	lightLevel = 255;
+}
+thing
+{
+	x = 128;
+	y = 64;
+	type = 1;
+	angle = 90;
+	skill1 = true;
+	skill2 = true;
+	skill3 = true;
+	skill4 = true;
+	skill5 = true;
+	single = true;
+	dm = true;
+	coop = true;
+}

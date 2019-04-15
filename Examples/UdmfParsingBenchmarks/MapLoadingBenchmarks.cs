@@ -9,9 +9,17 @@ using SectorDirector.Core.FormatModels.Wad;
 namespace UdmfParsingBenchmarks
 {
     [SimpleJob(RunStrategy.Monitoring)]
-    [CsvExporter]
     public class MapLoadingBenchmarks
     {
+        [Benchmark(Baseline = true)]
+        public MapData Piglet()
+        {
+            using (var wad = WadReader.Read("freedoom2-udmf.wad"))
+            {
+                return MapData.LoadFromUsingPiglet(wad.GetMapStream("MAP28"));
+            }
+        }
+
         [Benchmark]
         public MapData Pidgin()
         {

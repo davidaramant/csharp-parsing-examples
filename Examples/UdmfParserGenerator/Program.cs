@@ -4,7 +4,7 @@
 using System.IO;
 using System.Linq;
 
-namespace SectorDirector.DataModelGenerator
+namespace UdmfParserGenerator
 {
     class Program
     {

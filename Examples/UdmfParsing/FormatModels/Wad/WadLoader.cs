@@ -34,5 +34,18 @@ namespace SectorDirector.Core.FormatModels.Wad
 
             return maps;
         }
+
+        public static List<MapData> LoadUsingPiglet(string path)
+        {
+            var maps = new List<MapData>();
+
+            using (var wad = WadReader.Read(path))
+            {
+                maps.AddRange(
+                    wad.GetMapNames().Select(name => MapData.LoadFromUsingPiglet(wad.GetMapStream(name))));
+            }
+
+            return maps;
+        }
     }
 }

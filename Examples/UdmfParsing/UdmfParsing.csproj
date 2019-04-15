@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Functional.Maybe" Version="2.0.10" />
     <PackageReference Include="Pidgin" Version="2.1.0" />
+    <PackageReference Include="Piglet" Version="1.4.0" />
     <PackageReference Include="Superpower" Version="2.2.0" />
   </ItemGroup>
 
