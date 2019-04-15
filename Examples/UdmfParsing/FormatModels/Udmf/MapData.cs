@@ -51,5 +51,20 @@ namespace SectorDirector.Core.FormatModels.Udmf
                 return Parsing.PigletVersion.UdmfParser.Parse(sa.Analyze(new Parsing.PigletVersion.UdmfLexer(textReader)));
             }
         }
+
+        public static MapData LoadFromUsingHime(TextReader reader)
+        {
+            var lexer = new Parsing.HimeVersion.UdmfLexer(reader);
+            var parser = new Parsing.HimeVersion.UdmfParser(lexer);
+            return Parsing.HimeVersion.UdmfSemanticAnalyzer.Process(parser.Parse());
+        }
+
+        public static MapData LoadFromUsingHime(Stream stream)
+        {
+            using (var textReader = new StreamReader(stream, Encoding.ASCII))
+            {
+                return LoadFromUsingHime(textReader);
+            }
+        }
     }
 }

@@ -1,0 +1,45 @@
+﻿grammar Udmf
+{
+  options
+  {
+    Axiom = "translation_unit";
+    Separator = "SEPARATOR";
+    Namespace = "SectorDirector.Core.FormatModels.Udmf.Parsing.HimeVersion";
+    AccessModifier = "Public";
+  }
+  terminals
+  {
+    NEW_LINE      -> U+000D /* CR */
+                  |  U+000A /* LF */; 
+
+    COMMENT_LINE  -> '//' (.* - (.* NEW_LINE .*)) ;
+    COMMENT_BLOCK -> '/*' (.* - (.* '*/' .*)) '*/' ;
+
+    WHITE_SPACE   -> NEW_LINE | U+0020 | U+0009 | U+000B | U+000C ;
+    SEPARATOR     -> WHITE_SPACE+ | COMMENT_LINE | COMMENT_BLOCK;
+
+    IDENTIFIER    -> [A-Za-z_]+ [A-Za-z0-9_]*;
+
+    // These two are too simplistic but they seem to work for real-world scenarios
+    // NOTE: Boolean must come after Identifier, otherwise they get confused for each other
+    BOOLEAN       -> 'true' | 'false';
+    QUOTED_STRING -> '"'[A-Za-z0-9_ .;:]*'"';
+
+    INTEGER       -> [+-]?[0-9]+ 
+                  |  '0x'[0-9A-Fa-f]+;
+
+    FLOAT         -> [+-]?[0-9]+'.'[0-9]*([eE][+-]?[0-9]+)?;
+  }
+  rules
+  {
+    value -> INTEGER^ | FLOAT^ | QUOTED_STRING^ | BOOLEAN^;
+
+    assignment_expr -> IDENTIFIER '='! value ';'!;
+
+    block -> IDENTIFIER '{'! assignment_expr* '}'!;
+
+    global_expr -> block | assignment_expr;
+
+    translation_unit -> global_expr+;
+  }
+}

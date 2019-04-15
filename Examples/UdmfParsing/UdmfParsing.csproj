@@ -6,7 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FormatModels\Udmf\Parsing\HimeVersion\UdmfLexer.bin" />
+    <None Remove="FormatModels\Udmf\Parsing\HimeVersion\UdmfParser.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="FormatModels\Udmf\Parsing\HimeVersion\UdmfLexer.bin" />
+    <EmbeddedResource Include="FormatModels\Udmf\Parsing\HimeVersion\UdmfParser.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Functional.Maybe" Version="2.0.10" />
+    <PackageReference Include="Hime.Redist" Version="3.4.0" />
     <PackageReference Include="Pidgin" Version="2.1.0" />
     <PackageReference Include="Piglet" Version="1.4.0" />
     <PackageReference Include="Superpower" Version="2.2.0" />

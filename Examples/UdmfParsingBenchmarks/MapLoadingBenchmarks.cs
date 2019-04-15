@@ -37,5 +37,14 @@ namespace UdmfParsingBenchmarks
                 return MapData.LoadFromUsingSuperpower(wad.GetMapStream("MAP28"));
             }
         }
+
+        [Benchmark]
+        public MapData Hime()
+        {
+            using (var wad = WadReader.Read("freedoom2-udmf.wad"))
+            {
+                return MapData.LoadFromUsingHime(wad.GetMapStream("MAP28"));
+            }
+        }
     }
 }
