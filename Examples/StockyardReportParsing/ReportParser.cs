@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Threading.Tasks.Dataflow;
 using Sprache;
 
 namespace StockyardReportParsing
@@ -47,15 +45,10 @@ namespace StockyardReportParsing
             select text;
 
         public static readonly Parser<GradeEntry> GradeEntryLine =
-            from indent in Parse.Char(' ').Many()
-            from head in Integer
-            from _1 in Separator
-            from weightRange in WeightRange
-            from _2 in Separator
-            from avgWeight in SingleWeight
-            from _3 in Separator
-            from priceRange in PriceRange
-            from _4 in Separator
+            from head in Integer.Token()
+            from weightRange in WeightRange.Token()
+            from avgWeight in SingleWeight.Token()
+            from priceRange in PriceRange.Token()
             from avgPrice in SinglePrice
             from description in GradeEntryDescription.Optional()
             from eol in Parse.LineEnd
