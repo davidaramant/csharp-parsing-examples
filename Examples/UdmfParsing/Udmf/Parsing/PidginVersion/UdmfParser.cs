@@ -40,10 +40,10 @@ namespace UdmfParsing.Udmf.Parsing.PidginVersion
 
         public static readonly Parser<char, double> Float =
             Parser.Map((sign, integerPart, decimalSeparator, fractionalPart) => double.Parse(
-                    (string) (sign.GetValueOrDefault(' ') +
-                              integerPart +
-                              decimalSeparator +
-                              fractionalPart.GetValueOrDefault(string.Empty))),
+                    sign.GetValueOrDefault(' ') +
+                    integerPart +
+                    decimalSeparator +
+                    fractionalPart.GetValueOrDefault(string.Empty)),
                 Parser.Char('-').Or(Parser.Char('+')).Optional(),
                 Parser.Digit.ManyString(),
                 Parser.Char('.'),
@@ -55,9 +55,9 @@ namespace UdmfParsing.Udmf.Parsing.PidginVersion
                     Parser<char>.Token(c => char.IsLetterOrDigit(c) || c == '_').ManyString());
 
         public static readonly Parser<char, object> Value =
-            Boolean.Cast<object>()
-            .Or(Parser.Try(Float).Cast<object>())
+            Parser.Try(Float).Cast<object>()
             .Or(Integer.Cast<object>())
+            .Or(Boolean.Cast<object>())
             .Or(QuotedString.Cast<object>());
 
         public static readonly Parser<char, Assignment> Assignment =
@@ -68,7 +68,8 @@ namespace UdmfParsing.Udmf.Parsing.PidginVersion
                 Semicolon.Before(Separator));
 
         public static readonly Parser<char, Block> Block =
-            Parser.Map((id, open, assignments, close) => new Block(id, ImmutableArray.ToImmutableArray<Assignment>(assignments)),
+            Parser.Map((id, open, assignments, close) => 
+                    new Block(id, ImmutableArray.ToImmutableArray(assignments)),
                 Identifier.Before(Separator),
                 LBrace.Before(Separator),
                 Assignment.Many(),
