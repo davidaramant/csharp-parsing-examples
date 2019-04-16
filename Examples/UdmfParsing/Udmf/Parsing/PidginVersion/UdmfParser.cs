@@ -13,7 +13,7 @@ namespace UdmfParsing.Udmf.Parsing.PidginVersion
     public static class UdmfParser
     {
         public static readonly Parser<char, Unit> Separator =
-            ((Parser.Char(' ').IgnoreResult()).
+            (Parser.Char(' ').IgnoreResult().
             Or(Parser.Char('\t').IgnoreResult()).
             Or(Parser.EndOfLine.IgnoreResult()).
             Or(Parser.Try(CommentParser.SkipBlockComment(Parser.String("/*"), Parser.String("*/")))).
