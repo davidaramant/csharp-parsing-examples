@@ -15,7 +15,8 @@ namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PigletVersion
         {
         }
 
-        public static readonly ILexer<Token> Definition = LexerFactory<Token>.Configure(configurator =>
+        public static readonly ILexer<Token> Definition = 
+            LexerFactory<Token>.Configure(configurator =>
         {
             // These have to go first so they don't turn into identifiers
             configurator.Token(@"true", f => Token.BooleanTrue);
@@ -33,7 +34,6 @@ namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PigletVersion
             configurator.Token(@"[+-]?\d+\.\d+[eE][+-]?\d+", f => Token.Double(double.Parse(f)));
             configurator.Token(@"[+-]?\d+\.\d+", f => Token.Double(double.Parse(f)));
 
-            // Hex Integer
             configurator.Token(@"0x[0-9A-Fa-f]+", f => Token.Integer(int.Parse(f.Substring(2, f.Length - 2), NumberStyles.HexNumber)));
             configurator.Token(@"[+-]?[0-9]+", f => Token.Integer(int.Parse(f)));
 
