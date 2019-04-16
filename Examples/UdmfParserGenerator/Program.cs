@@ -30,6 +30,8 @@ namespace UdmfParserGenerator
             }
 
             // Generate HIME lexer / parser
+            // Hime is assumed to be "installed" in a folder called Hime in the base of the repo
+            // Just unzip the Hime download there
             using (var himeProcess = Process.Start(
                 Path.Combine(solutionBasePath, "..", "hime", "himecc.bat"),
                 "Udmf.gram"))
