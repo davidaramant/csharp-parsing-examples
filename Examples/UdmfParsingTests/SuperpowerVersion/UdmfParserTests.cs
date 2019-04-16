@@ -4,8 +4,8 @@
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.SuperpowerVersion;
 using Superpower;
+using UdmfParsing.Udmf.Parsing.SuperpowerVersion;
 
 namespace UdmfParsingTests.SuperpowerVersion
 {

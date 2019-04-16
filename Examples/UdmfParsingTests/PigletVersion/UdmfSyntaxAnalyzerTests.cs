@@ -4,8 +4,8 @@
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using SectorDirector.Core.FormatModels.Common;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PigletVersion;
+using UdmfParsing.Common;
+using UdmfParsing.Udmf.Parsing.PigletVersion;
 
 namespace UdmfParsingTests.PigletVersion
 { 

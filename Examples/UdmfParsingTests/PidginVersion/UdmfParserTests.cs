@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Pidgin;
-using SectorDirector.Core.FormatModels.Common;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
+using UdmfParsing.Common;
+using UdmfParsing.Udmf.Parsing.PidginVersion;
+using UdmfParsing.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
 
 namespace UdmfParsingTests.PidginVersion
 {

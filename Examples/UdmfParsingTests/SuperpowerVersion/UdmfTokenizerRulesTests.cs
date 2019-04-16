@@ -3,7 +3,7 @@
 
 using System.Linq;
 using NUnit.Framework;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.SuperpowerVersion;
+using UdmfParsing.Udmf.Parsing.SuperpowerVersion;
 
 namespace UdmfParsingTests.SuperpowerVersion
 {

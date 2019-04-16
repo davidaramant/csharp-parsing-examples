@@ -4,7 +4,7 @@
   {
     Axiom = "translation_unit";
     Separator = "SEPARATOR";
-    Namespace = "SectorDirector.Core.FormatModels.Udmf.Parsing.HimeVersion";
+    Namespace = "UdmfParsing.Udmf.Parsing.HimeVersion";
     AccessModifier = "Public";
   }
   terminals

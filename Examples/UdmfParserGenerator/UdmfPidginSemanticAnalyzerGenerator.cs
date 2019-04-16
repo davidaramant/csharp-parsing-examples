@@ -20,9 +20,9 @@ namespace UdmfParserGenerator
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
 using System.CodeDom.Compiler;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
+using UdmfParsing.Udmf.Parsing.PidginVersion.AbstractSyntaxTree;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing.PidginVersion").OpenParen()
+namespace UdmfParsing.Udmf.Parsing.PidginVersion").OpenParen()
                     .Line($"[GeneratedCode(\"{CurrentLibraryInfo.Name}\", \"{CurrentLibraryInfo.Version}\")]")
                     .Line("public static partial class UdmfSemanticAnalyzer").OpenParen();
 

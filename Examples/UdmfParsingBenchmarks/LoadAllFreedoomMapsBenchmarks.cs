@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using SectorDirector.Core.FormatModels.Udmf;
-using SectorDirector.Core.FormatModels.Wad;
+using UdmfParsing.Udmf;
+using UdmfParsing.Wad;
 
 namespace UdmfParsingBenchmarks
 {

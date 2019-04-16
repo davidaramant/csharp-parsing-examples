@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2018, David Aramant
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
-using SectorDirector.Core.FormatModels.Udmf;
+using UdmfParsing.Udmf;
 
 namespace UdmfParsingTests
 {

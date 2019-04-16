@@ -4,7 +4,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Piglet.Lexer;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PigletVersion;
+using UdmfParsing.Udmf.Parsing.PigletVersion;
 
 namespace UdmfParsingTests.PigletVersion
 {

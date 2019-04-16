@@ -6,13 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="FormatModels\Udmf\Parsing\HimeVersion\UdmfLexer.bin" />
-    <None Remove="FormatModels\Udmf\Parsing\HimeVersion\UdmfParser.bin" />
+    <Compile Remove="FormatModels\**" />
+    <EmbeddedResource Remove="FormatModels\**" />
+    <None Remove="FormatModels\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="FormatModels\Udmf\Parsing\HimeVersion\UdmfLexer.bin" />
-    <EmbeddedResource Include="FormatModels\Udmf\Parsing\HimeVersion\UdmfParser.bin" />
+    <None Remove="Udmf\Parsing\HimeVersion\UdmfLexer.bin" />
+    <None Remove="Udmf\Parsing\HimeVersion\UdmfParser.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Udmf\Parsing\HimeVersion\UdmfLexer.bin" />
+    <EmbeddedResource Include="Udmf\Parsing\HimeVersion\UdmfParser.bin" />
   </ItemGroup>
 
   <ItemGroup>

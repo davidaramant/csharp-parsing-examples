@@ -27,9 +27,9 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SectorDirector.Core.FormatModels.Udmf.WritingExtensions;
+using UdmfParsing.Udmf.WritingExtensions;
 
-namespace SectorDirector.Core.FormatModels.Udmf");
+namespace UdmfParsing.Udmf");
 
                     output.OpenParen();
                     output.Line(

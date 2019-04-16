@@ -22,9 +22,9 @@ namespace UdmfParserGenerator
 using System.CodeDom.Compiler;
 using System.Linq;
 using Hime.Redist;
-using SectorDirector.Core.FormatModels.Common;
+using UdmfParsing.Common;
 
-namespace SectorDirector.Core.FormatModels.Udmf.Parsing.HimeVersion").OpenParen()
+namespace UdmfParsing.Udmf.Parsing.HimeVersion").OpenParen()
                     .Line($"[GeneratedCode(\"{CurrentLibraryInfo.Name}\", \"{CurrentLibraryInfo.Version}\")]")
                     .Line("public static partial class UdmfSemanticAnalyzer").OpenParen();
 

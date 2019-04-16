@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using SectorDirector.Core.FormatModels.Common;
-using SectorDirector.Core.FormatModels.Udmf;
-using SectorDirector.Core.FormatModels.Wad;
+using UdmfParsing.Common;
+using UdmfParsing.Udmf;
+using UdmfParsing.Wad;
 using Is = NUnit.DeepObjectCompare.Is;
 
 namespace UdmfParsingTests.PidginVersion

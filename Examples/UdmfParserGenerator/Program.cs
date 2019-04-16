@@ -13,8 +13,7 @@ namespace UdmfParserGenerator
         static void Main(string[] args)
         {
             var solutionBasePath = Path.Combine(Enumerable.Repeat("..", 4).ToArray());
-            var corePath = Path.Combine(solutionBasePath, "UdmfParsing");
-            var udmfPath = Path.Combine(corePath, "FormatModels", "Udmf");
+            var udmfPath = Path.Combine(solutionBasePath, "UdmfParsing", "Udmf");
             var udmfParsingPath = Path.Combine(udmfPath, "Parsing");
 
             // Create data model

@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using Hime.Redist;
 using NUnit.Framework;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.HimeVersion;
+using UdmfParsing.Udmf.Parsing.HimeVersion;
 
 namespace UdmfParsingTests.HimeVersion
 {

@@ -4,8 +4,7 @@
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using SectorDirector.Core.FormatModels.Udmf;
-using SectorDirector.Core.FormatModels.Udmf.Parsing.PigletVersion;
+using UdmfParsing.Udmf.Parsing.PigletVersion;
 using Is = NUnit.DeepObjectCompare.Is;
 
 namespace UdmfParsingTests.PigletVersion
