@@ -69,7 +69,7 @@ namespace UdmfParsing.Udmf.Parsing.PidginVersion
 
         public static readonly Parser<char, Block> Block =
             Parser.Map((id, open, assignments, close) => 
-                    new Block(id, ImmutableArray.ToImmutableArray(assignments)),
+                    new Block(id, assignments.ToImmutableArray()),
                 Identifier.Before(Separator),
                 LBrace.Before(Separator),
                 Assignment.Many(),
