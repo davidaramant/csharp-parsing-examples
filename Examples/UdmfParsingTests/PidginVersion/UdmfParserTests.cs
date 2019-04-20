@@ -46,14 +46,24 @@ namespace UdmfParsingTests.PidginVersion
             Assert.That(UdmfParser.Integer.ParseOrThrow(input), Is.EqualTo(expectedValue));
         }
 
+        [TestCase("1", 1)]
+        [TestCase("0001", 1)]
+        [TestCase("123456789", 123456789)]
+        [TestCase("+5", 5)]
+        [TestCase("-6", -6)]
+        [TestCase("0x1234", 0x1234)]
         [TestCase("1.", 1d)]
         [TestCase("1.0", 1d)]
         [TestCase("+1.0", 1d)]
         [TestCase("-1.0", -1d)]
         [TestCase("1.234", 1.234d)]
-        public void ShouldParseFloat(string input, double expectedValue)
+        [TestCase("-1.234", -1.234d)]
+        public void ShouldParseNumber(string input, object expectedValue)
         {
-            Assert.That(UdmfParser.Float.ParseOrThrow(input), Is.EqualTo(expectedValue));
+            var actualValue = UdmfParser.Number.ParseOrThrow(input);
+
+            Assert.That(actualValue, Is.EqualTo(expectedValue));
+            Assert.That(actualValue, Is.TypeOf(expectedValue.GetType()));
         }
 
         [TestCase("")]

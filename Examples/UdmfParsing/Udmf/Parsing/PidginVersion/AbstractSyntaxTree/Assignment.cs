@@ -2,10 +2,12 @@
 // Distributed under the 3-clause BSD license.  For full terms see the file LICENSE. 
 
 using System;
+using System.Diagnostics;
 using UdmfParsing.Common;
 
 namespace UdmfParsing.Udmf.Parsing.PidginVersion.AbstractSyntaxTree
 {
+    [DebuggerDisplay("{ToString()}")]
     public sealed class Assignment : IGlobalExpression, IEquatable<Assignment>
     {
         public readonly Identifier Name;
@@ -31,6 +33,8 @@ namespace UdmfParsing.Udmf.Parsing.PidginVersion.AbstractSyntaxTree
                     return Value.ToString();
             }
         }
+
+        public override string ToString() => $"{Name}: {ValueAsString()} ({Value.GetType()})";
 
         #region Equality
         public bool Equals(Assignment other)
