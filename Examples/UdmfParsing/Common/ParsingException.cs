@@ -10,5 +10,9 @@ namespace UdmfParsing.Common
         public ParsingException(string message) : base(message)
         {            
         }
+
+        public ParsingException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }
