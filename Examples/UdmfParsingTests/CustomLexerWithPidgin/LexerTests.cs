@@ -38,6 +38,16 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
             Assert.That(((FloatToken)tokens[0]).Value, Is.EqualTo(expected));
         }
 
+        [TestCase("true", true)]
+        [TestCase("false", false)]
+        public void ShouldParseBoolean(string input, bool expected)
+        {
+            var tokens = Scan(input);
+            Assert.That(tokens, Has.Length.EqualTo(1));
+            Assert.That(tokens[0], Is.TypeOf<BooleanToken>());
+            Assert.That(((BooleanToken)tokens[0]).Value, Is.EqualTo(expected));
+        }
+
         private static Token[] Scan(string input)
         {
             using (var stringReader = new StringReader(input))

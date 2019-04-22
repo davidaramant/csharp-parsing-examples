@@ -40,6 +40,7 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                         yield return new CloseBraceToken(_currentPosition);
                         SkipChar();
                         break;
+
                     case char digit when char.IsDigit(next):
                         yield return ParseNumber(digit);
                         break;
@@ -47,6 +48,14 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                     case '+':
                         yield return ParseNumber(next);
                         break;
+
+                    case 't':
+                        yield return ParseTrue();
+                        break;
+                    case 'f':
+                        yield return ParseFalse();
+                        break;
+
                     default:
                         SkipChar();
                         break;
@@ -101,6 +110,32 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             }
 
             return new FloatToken(start, BufferAsFloat());
+        }
+
+        private BooleanToken ParseTrue()
+        {
+            var start = _currentPosition;
+            MatchString("true");
+            return new BooleanToken(start, true);
+        }
+
+        private BooleanToken ParseFalse()
+        {
+            var start = _currentPosition;
+            MatchString("false");
+            return new BooleanToken(start, false);
+        }
+
+        private void MatchString(string expected)
+        {
+            foreach (var c in expected)
+            {
+                if (PeekChar() != c)
+                {
+                    throw new ParsingException($"Unexpected character '{PeekChar()} at {_currentPosition}");
+                }
+                SkipChar();
+            }
         }
 
         private char PeekChar()
