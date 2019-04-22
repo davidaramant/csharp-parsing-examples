@@ -35,7 +35,9 @@ namespace UdmfParsing.Udmf.WritingExtensions
 
         public static void WriteProperty(this Stream stream, string name, double value, bool indent)
         {
-            WritePropertyVerbatim(stream, name, value.ToString(CultureInfo.InvariantCulture), indent);
+            string DoubleToString(double source) => (source % 1) == 0 ? source.ToString("f1") : source.ToString();
+
+            WritePropertyVerbatim(stream, name, DoubleToString(value), indent);
         }
 
         public static void WriteProperty(this Stream stream, string name, bool value, bool indent)

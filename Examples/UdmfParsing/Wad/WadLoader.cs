@@ -22,6 +22,19 @@ namespace UdmfParsing.Wad
             return maps;
         }
 
+        public static List<MapData> LoadUsingCustom(string path)
+        {
+            var maps = new List<MapData>();
+
+            using (var wad = WadReader.Read(path))
+            {
+                maps.AddRange(
+                    wad.GetMapNames().Select(name => MapData.LoadFromUsingCustom(wad.GetMapStream(name))));
+            }
+
+            return maps;
+        }
+
         public static List<MapData> LoadUsingSuperpower(string path)
         {
             var maps = new List<MapData>();

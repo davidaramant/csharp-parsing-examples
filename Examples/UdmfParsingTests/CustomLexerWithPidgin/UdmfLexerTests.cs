@@ -9,7 +9,7 @@ using System.Text;
 namespace UdmfParsingTests.CustomLexerWithPidgin
 {
     [TestFixture]
-    public sealed class LexerTests
+    public sealed class UdmfLexerTests
     {
         [TestCase("0", 0)]
         [TestCase("1", 1)]
@@ -104,7 +104,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
         {
             using (var stringReader = new StringReader(input))
             {
-                var lexer = new Lexer(stringReader);
+                var lexer = new UdmfLexer(stringReader);
                 return lexer.Scan().ToArray();
             }
         }
@@ -127,7 +127,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
 
                 using (var textReader = new StreamReader(stream, Encoding.ASCII))
                 {
-                    var lexer = new Lexer(textReader);
+                    var lexer = new UdmfLexer(textReader);
                     var result = lexer.Scan().ToArray();
                 }
             }

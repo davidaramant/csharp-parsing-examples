@@ -24,6 +24,11 @@ namespace UdmfParserGenerator
                 UdmfPidginSemanticAnalyzerGenerator.WriteTo(analyzerStream);
             }
 
+            using (var analyzerStream = File.CreateText(Path.Combine(udmfParsingPath, "CustomLexerWithPidgin", "UdmfSemanticAnalyzer.Generated.cs")))
+            {
+                UdmfPidginSemanticAnalyzerGenerator.WriteTo(analyzerStream, "CustomLexerWithPidgin");
+            }
+
             using (var analyzerStream = File.CreateText(Path.Combine(udmfParsingPath, "SuperpowerVersion", "UdmfSemanticAnalyzer.Generated.cs")))
             {
                 UdmfSuperpowerSemanticAnalyzerGenerator.WriteTo(analyzerStream);

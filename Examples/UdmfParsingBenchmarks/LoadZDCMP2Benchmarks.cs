@@ -30,6 +30,15 @@ namespace UdmfParsingBenchmarks
         }
 
         [Benchmark]
+        public MapData CustomLexerWithPidginParser()
+        {
+            using (var reader = WadReader.Read("zdcmp2.wad"))
+            {
+                var stream = reader.GetLumpStream(reader.Directory.First(l => l.Name == "TEXTMAP"));
+                return MapData.LoadFromUsingCustom(stream);
+            }
+        }
+
         public MapData Superpower()
         {
             using (var reader = WadReader.Read("zdcmp2.wad"))

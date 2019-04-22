@@ -8,14 +8,14 @@ using UdmfParsing.Common;
 
 namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
 {
-    public sealed class Lexer
+    public sealed class UdmfLexer
     {
         private readonly TextReader _reader;
         private FilePosition _currentPosition = FilePosition.StartOfFile();
         private const char Null = '\0';
         private StringBuilder _tokenBuffer = new StringBuilder();
 
-        public Lexer(TextReader reader) => _reader = reader;
+        public UdmfLexer(TextReader reader) => _reader = reader;
 
         public IEnumerable<Token> Scan()
         {

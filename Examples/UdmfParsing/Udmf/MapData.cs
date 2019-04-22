@@ -24,6 +24,21 @@ namespace UdmfParsing.Udmf
             }
         }
 
+        public static MapData LoadFromUsingCustom(TextReader reader)
+        {
+            var lexer = new Parsing.CustomLexerWithPidgin.UdmfLexer(reader);
+            var result = Parsing.CustomLexerWithPidgin.UdmfParser.TranslationUnit.ParseOrThrow(lexer.Scan());
+            return Parsing.CustomLexerWithPidgin.UdmfSemanticAnalyzer.Process(result);
+        }
+
+        public static MapData LoadFromUsingCustom(Stream stream)
+        {
+            using (var textReader = new StreamReader(stream, Encoding.ASCII))
+            {
+                return LoadFromUsingCustom(textReader);
+            }
+        }
+
         
         public static MapData LoadFromUsingSuperpower(TextReader reader)
         {
