@@ -4,6 +4,7 @@ using UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin;
 using NUnit.Framework;
 using System.Linq;
 using System.IO;
+using System.Text;
 
 namespace UdmfParsingTests.CustomLexerWithPidgin
 {
@@ -62,6 +63,8 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
         [TestCase("A")]
         [TestCase("_")]
         [TestCase("someName_123")]
+        [TestCase("t")]
+        [TestCase("true_1")]
         public void ShouldLexIdentifier(string id)
         {
             var tokens = Scan(id);
@@ -103,6 +106,30 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
             {
                 var lexer = new Lexer(stringReader);
                 return lexer.Scan().ToArray();
+            }
+        }
+
+        [Test]
+        public void ShouldHandleLexingDemoMap()
+        {
+            var map = DemoMap.Create();
+
+            using(var fs = File.OpenWrite("text.udmf"))
+            {
+                map.WriteTo(fs);
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                map.WriteTo(stream);
+
+                stream.Position = 0;
+
+                using (var textReader = new StreamReader(stream, Encoding.ASCII))
+                {
+                    var lexer = new Lexer(textReader);
+                    var result = lexer.Scan().ToArray();
+                }
             }
         }
     }

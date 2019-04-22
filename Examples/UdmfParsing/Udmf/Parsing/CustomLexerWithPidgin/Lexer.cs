@@ -49,13 +49,6 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                         yield return ParseNumber(next);
                         break;
 
-                    case 't':
-                        yield return ParseTrue();
-                        break;
-                    case 'f':
-                        yield return ParseFalse();
-                        break;
-
                     case '"':
                         yield return ParseString();
                         break;
@@ -67,6 +60,11 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
 
                     case '/':
                         SkipComment();
+                        break;
+
+                    case '\n':
+                        SkipChar();
+                        _currentPosition = _currentPosition.NextLine();
                         break;
 
                     case char ws when char.IsWhiteSpace(next):
@@ -128,20 +126,6 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             return new FloatToken(start, BufferAsFloat());
         }
 
-        private BooleanToken ParseTrue()
-        {
-            var start = _currentPosition;
-            MatchString("true");
-            return new BooleanToken(start, true);
-        }
-
-        private BooleanToken ParseFalse()
-        {
-            var start = _currentPosition;
-            MatchString("false");
-            return new BooleanToken(start, false);
-        }
-
         private StringToken ParseString()
         {
             var start = _currentPosition;
@@ -156,7 +140,7 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             return new StringToken(start, BufferAsString());
         }
 
-        private IdentifierToken ParseIdentifier()
+        private Token ParseIdentifier()
         {
             var start = _currentPosition;
             ConsumeChar();
@@ -166,7 +150,13 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                 ConsumeChar();
             }
 
-            return new IdentifierToken(start, new Identifier(BufferAsString()));
+            var name = BufferAsString();
+            switch (name)
+            {
+                case "true": return new BooleanToken(start, true);
+                case "false": return new BooleanToken(start, false);
+                default: return new IdentifierToken(start, new Identifier(name));
+            }
         }
 
         private void SkipComment()
@@ -201,18 +191,6 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                     break;
                 default:
                     throw new ParsingException("Malformed comment on " + start);
-            }
-        }
-
-        private void MatchString(string expected)
-        {
-            foreach (var c in expected)
-            {
-                if (PeekChar() != c)
-                {
-                    throw new ParsingException($"Unexpected character '{PeekChar()} at {_currentPosition}");
-                }
-                SkipChar();
             }
         }
 
