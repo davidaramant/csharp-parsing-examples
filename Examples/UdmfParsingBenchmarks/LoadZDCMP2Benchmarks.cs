@@ -39,6 +39,7 @@ namespace UdmfParsingBenchmarks
             }
         }
 
+        [Benchmark]
         public MapData Superpower()
         {
             using (var reader = WadReader.Read("zdcmp2.wad"))

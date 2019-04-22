@@ -27,6 +27,7 @@ namespace UdmfParsingBenchmarks
             return WadLoader.LoadUsingCustom("freedoom2-udmf.wad");
         }
 
+        [Benchmark]
         public List<MapData> Superpower()
         {
             return WadLoader.LoadUsingSuperpower("freedoom2-udmf.wad");
