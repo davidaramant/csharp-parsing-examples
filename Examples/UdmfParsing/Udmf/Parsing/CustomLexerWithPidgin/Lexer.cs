@@ -56,6 +56,10 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                         yield return ParseFalse();
                         break;
 
+                    case '"':
+                        yield return ParseString();
+                        break;
+
                     default:
                         SkipChar();
                         break;
@@ -126,6 +130,20 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             return new BooleanToken(start, false);
         }
 
+        private StringToken ParseString()
+        {
+            var start = _currentPosition;
+            SkipChar();
+
+            while (PeekChar() != '"')
+            {
+                ConsumeChar();
+            }
+            SkipChar();
+
+            return new StringToken(start, BufferAsString());
+        }
+
         private void MatchString(string expected)
         {
             foreach (var c in expected)
@@ -173,6 +191,13 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
         private double BufferAsFloat()
         {
             var value = double.Parse(_tokenBuffer.ToString());
+            _tokenBuffer.Clear();
+            return value;
+        }
+
+        private string BufferAsString()
+        {
+            var value = _tokenBuffer.ToString();
             _tokenBuffer.Clear();
             return value;
         }

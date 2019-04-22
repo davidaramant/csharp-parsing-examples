@@ -48,6 +48,16 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
             Assert.That(((BooleanToken)tokens[0]).Value, Is.EqualTo(expected));
         }
 
+        [TestCase("\"\"", "")]
+        [TestCase("\"Some value 123 _\"", "Some value 123 _")]
+        public void ShouldParseString(string input, string expected)
+        {
+            var tokens = Scan(input);
+            Assert.That(tokens, Has.Length.EqualTo(1));
+            Assert.That(tokens[0], Is.TypeOf<StringToken>());
+            Assert.That(((StringToken)tokens[0]).Value, Is.EqualTo(expected));
+        }
+
         private static Token[] Scan(string input)
         {
             using (var stringReader = new StringReader(input))
