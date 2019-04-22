@@ -42,20 +42,20 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                         break;
 
                     case char digit when char.IsDigit(next):
-                        yield return ParseNumber(digit);
+                        yield return LexNumber(digit);
                         break;
                     case '-':
                     case '+':
-                        yield return ParseNumber(next);
+                        yield return LexNumber(next);
                         break;
 
                     case '"':
-                        yield return ParseString();
+                        yield return LexString();
                         break;
 
                     case char idStart when char.IsLetter(next):
                     case '_':
-                        yield return ParseIdentifier();
+                        yield return LexIdentifier();
                         break;
 
                     case '/':
@@ -80,7 +80,7 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             }
         }
 
-        private Token ParseNumber(char first)
+        private Token LexNumber(char first)
         {
             var start = _currentPosition;
             ConsumeChar();
@@ -126,7 +126,7 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             return new FloatToken(start, BufferAsFloat());
         }
 
-        private StringToken ParseString()
+        private StringToken LexString()
         {
             var start = _currentPosition;
             SkipChar();
@@ -140,7 +140,7 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             return new StringToken(start, BufferAsString());
         }
 
-        private Token ParseIdentifier()
+        private Token LexIdentifier()
         {
             var start = _currentPosition;
             ConsumeChar();
