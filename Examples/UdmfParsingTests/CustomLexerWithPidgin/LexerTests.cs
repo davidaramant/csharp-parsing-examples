@@ -17,7 +17,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
         [TestCase("-123", -123)]
         [TestCase("+123", 123)]
         [TestCase("0x1234", 0x1234)]
-        public void ShouldParseInteger(string input, int expected)
+        public void ShouldLexInteger(string input, int expected)
         {
             var tokens = Scan(input);
             Assert.That(tokens, Has.Length.EqualTo(1));
@@ -30,7 +30,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
         [TestCase("1.23", 1.23)]
         [TestCase("-1.23", -1.23)]
         [TestCase("+1.23", 1.23)]
-        public void ShouldParseFloat(string input, double expected)
+        public void ShouldLexFloat(string input, double expected)
         {
             var tokens = Scan(input);
             Assert.That(tokens, Has.Length.EqualTo(1));
@@ -40,7 +40,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
 
         [TestCase("true", true)]
         [TestCase("false", false)]
-        public void ShouldParseBoolean(string input, bool expected)
+        public void ShouldLexBoolean(string input, bool expected)
         {
             var tokens = Scan(input);
             Assert.That(tokens, Has.Length.EqualTo(1));
@@ -50,7 +50,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
 
         [TestCase("\"\"", "")]
         [TestCase("\"Some value 123 _\"", "Some value 123 _")]
-        public void ShouldParseString(string input, string expected)
+        public void ShouldLexString(string input, string expected)
         {
             var tokens = Scan(input);
             Assert.That(tokens, Has.Length.EqualTo(1));
@@ -62,12 +62,39 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
         [TestCase("A")]
         [TestCase("_")]
         [TestCase("someName_123")]
-        public void ShouldParseIdentifier(string id)
+        public void ShouldLexIdentifier(string id)
         {
             var tokens = Scan(id);
             Assert.That(tokens, Has.Length.EqualTo(1));
             Assert.That(tokens[0], Is.TypeOf<IdentifierToken>());
             Assert.That(((IdentifierToken)tokens[0]).Id.ToString(), Is.EqualTo(id));
+        }
+
+        [TestCase("id=1;")]
+        [TestCase(" id = 1 ; ")]
+        [TestCase("// Some comment\n id = 1 ; ")]
+        [TestCase("/*\nSome comment\n*/id = 1 ; ")]
+        [TestCase("id=1;//ending comment")]
+        [TestCase("id=1;/*ending block comment*/")]
+        public void ShouldLexAssignment(string input)
+        {
+            var tokens = Scan(input);
+            Assert.That(tokens, Has.Length.EqualTo(4));
+            Assert.That(tokens[0], Is.TypeOf<IdentifierToken>());
+            Assert.That(tokens[1], Is.TypeOf<EqualsToken>());
+            Assert.That(tokens[2], Is.TypeOf<IntegerToken>());
+            Assert.That(tokens[3], Is.TypeOf<SemicolonToken>());
+        }
+
+        [TestCase("blockName{}")]
+        [TestCase("blockName\n{\n}\n")]
+        public void ShouldLexBlock(string input)
+        {
+            var tokens = Scan(input);
+            Assert.That(tokens, Has.Length.EqualTo(3));
+            Assert.That(tokens[0], Is.TypeOf<IdentifierToken>());
+            Assert.That(tokens[1], Is.TypeOf<OpenBraceToken>());
+            Assert.That(tokens[2], Is.TypeOf<CloseBraceToken>());
         }
 
         private static Token[] Scan(string input)

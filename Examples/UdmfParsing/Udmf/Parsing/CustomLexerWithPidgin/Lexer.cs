@@ -65,14 +65,21 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                         yield return ParseIdentifier();
                         break;
 
-                    default:
+                    case '/':
+                        SkipComment();
+                        break;
+
+                    case char ws when char.IsWhiteSpace(next):
                         SkipChar();
                         break;
+
+                    case Null:
+                    default:
+                        yield break;
                 }
 
                 next = PeekChar();
             }
-            yield break;
         }
 
         private Token ParseNumber(char first)
@@ -154,12 +161,47 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             var start = _currentPosition;
             ConsumeChar();
 
-            while(char.IsLetterOrDigit(PeekChar()) || PeekChar() == '_')
+            while (char.IsLetterOrDigit(PeekChar()) || PeekChar() == '_')
             {
                 ConsumeChar();
             }
 
             return new IdentifierToken(start, new Identifier(BufferAsString()));
+        }
+
+        private void SkipComment()
+        {
+            var start = _currentPosition;
+            SkipChar();
+            switch (PeekChar())
+            {
+                case '/':
+                    SkipChar();
+                    while (PeekChar() != '\n' && PeekChar() != Null)
+                    {
+                        SkipChar();
+                    }
+                    break;
+                case '*':
+                    SkipChar();
+                    bool inside = true;
+                    while (inside)
+                    {
+                        while (PeekChar() != '*')
+                        {
+                            SkipChar();
+                        }
+                        SkipChar();
+                        if (PeekChar() == '/')
+                        {
+                            SkipChar();
+                            inside = false;
+                        }
+                    }
+                    break;
+                default:
+                    throw new ParsingException("Malformed comment on " + start);
+            }
         }
 
         private void MatchString(string expected)
@@ -183,13 +225,21 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
         private void SkipChar()
         {
             _currentPosition = _currentPosition.NextChar();
-            _reader.Read();
+            if (_reader.Read() == Null)
+            {
+                throw new ParsingException("Unexpected end of file at " + _currentPosition);
+            }
         }
 
         private void ConsumeChar()
         {
             _currentPosition = _currentPosition.NextChar();
-            _tokenBuffer.Append((char)_reader.Read());
+            var next = _reader.Read();
+            if (next == -1)
+            {
+                throw new ParsingException("Unexpected end of file at " + _currentPosition);
+            }
+            _tokenBuffer.Append((char)next);
         }
 
         private int BufferAsHexInteger()
