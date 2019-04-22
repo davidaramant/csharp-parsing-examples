@@ -60,6 +60,11 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                         yield return ParseString();
                         break;
 
+                    case char idStart when char.IsLetter(next):
+                    case '_':
+                        yield return ParseIdentifier();
+                        break;
+
                     default:
                         SkipChar();
                         break;
@@ -142,6 +147,19 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             SkipChar();
 
             return new StringToken(start, BufferAsString());
+        }
+
+        private IdentifierToken ParseIdentifier()
+        {
+            var start = _currentPosition;
+            ConsumeChar();
+
+            while(char.IsLetterOrDigit(PeekChar()) || PeekChar() == '_')
+            {
+                ConsumeChar();
+            }
+
+            return new IdentifierToken(start, new Identifier(BufferAsString()));
         }
 
         private void MatchString(string expected)

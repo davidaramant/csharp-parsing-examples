@@ -58,6 +58,18 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
             Assert.That(((StringToken)tokens[0]).Value, Is.EqualTo(expected));
         }
 
+        [TestCase("a")]
+        [TestCase("A")]
+        [TestCase("_")]
+        [TestCase("someName_123")]
+        public void ShouldParseIdentifier(string id)
+        {
+            var tokens = Scan(id);
+            Assert.That(tokens, Has.Length.EqualTo(1));
+            Assert.That(tokens[0], Is.TypeOf<IdentifierToken>());
+            Assert.That(((IdentifierToken)tokens[0]).Id.ToString(), Is.EqualTo(id));
+        }
+
         private static Token[] Scan(string input)
         {
             using (var stringReader = new StringReader(input))
