@@ -84,12 +84,23 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
                 return new IntegerToken(start, BufferAsHexInteger());
             }
 
-            while(char.IsDigit(PeekChar()))
+            while (char.IsDigit(PeekChar()))
             {
                 ConsumeChar();
             }
-            
-            return new IntegerToken(start, BufferAsInteger());
+            if (PeekChar() != '.')
+            {
+                return new IntegerToken(start, BufferAsInteger());
+            }
+
+            ConsumeChar();
+
+            while (char.IsDigit(PeekChar()))
+            {
+                ConsumeChar();
+            }
+
+            return new FloatToken(start, BufferAsFloat());
         }
 
         private char PeekChar()
@@ -120,6 +131,13 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
         private int BufferAsInteger()
         {
             var value = int.Parse(_tokenBuffer.ToString());
+            _tokenBuffer.Clear();
+            return value;
+        }
+
+        private double BufferAsFloat()
+        {
+            var value = double.Parse(_tokenBuffer.ToString());
             _tokenBuffer.Clear();
             return value;
         }

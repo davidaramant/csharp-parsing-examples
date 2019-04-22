@@ -25,6 +25,19 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
             Assert.That(((IntegerToken)tokens[0]).Value, Is.EqualTo(expected));
         }
 
+        [TestCase("0.", 0d)]
+        [TestCase("1.", 1d)]
+        [TestCase("1.23", 1.23)]
+        [TestCase("-1.23", -1.23)]
+        [TestCase("+1.23", 1.23)]
+        public void ShouldParseFloat(string input, double expected)
+        {
+            var tokens = Scan(input);
+            Assert.That(tokens, Has.Length.EqualTo(1));
+            Assert.That(tokens[0], Is.TypeOf<FloatToken>());
+            Assert.That(((FloatToken)tokens[0]).Value, Is.EqualTo(expected));
+        }
+
         private static Token[] Scan(string input)
         {
             using (var stringReader = new StringReader(input))
