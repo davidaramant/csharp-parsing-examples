@@ -35,13 +35,21 @@ Library project that holds the model and the guts of the various parsers.  This 
 
 #### Benchmarks
 
-These are only relevant for comparing against each other:
+The absolute times are only relevant for my laptop, but the relative times are interesting (all times are in seconds):
 
-|Map(s)|Custom Lexer + Pidgin Parser|Piglet|Pidgin - unified number parser|Pidgin|Superpower|Hime|
+|Map(s)|Pidgin with Custom Lexer|Piglet|Pidgin, Take 2|Pidgin|Superpower|Hime|
 |---|---:|---:|---:|---:|---:|---:|
-|Freedoom MAP28|0.27|0.43|0.9|1.8|3|18.9|
-|All Freedoom Maps|2.7|3.6|8|12|25.9|600+|
-|ZDCMP2|3|3.5|7.4|11.3|26.1|600+|
+|Freedoom MAP28|0.3|0.4|0.9|1.8|3.0|18.9|
+|All Freedoom Maps|2.7|3.6|8.0|12.0|25.9|600+|
+|ZDCMP2|3.0|3.5|7.4|11.3|26.1|600+|
+
+The first version of the Pidgin parser is only available if you dive into the history.  The speedup in the current ("take 2") version is that it has a unified "number" parser that does not have to backtrack when parsing integers & floating point numbers.
+
+Maps:
+
+* [Freedoom](https://doomwiki.org/wiki/Freedoom) MAP28 is an example of a large map.
+* Freedoom itself (technically, "Freedoom: Phase 2") is composed of 32 maps.  This benchmark doesn't have as many trials as just the MAP28 loading, so the number is more variable.
+* [ZDCMP2](https://doomwiki.org/wiki/The_ZDoom_Community_Map_Project_"Take_2") is a _gargantuan_ level (2.7 million lines!)
 
 ### `UdmfParsingBenchmarks`
 
