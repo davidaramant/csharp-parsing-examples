@@ -44,42 +44,19 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
             return unknownBlock;
         }
 
-        static int ReadIntValue(Assignment assignment, string context)
+        static int ReadIntValue(Assignment assignment, string context) => ReadValue<int, IntegerToken>(assignment, context);
+        static double ReadDoubleValue(Assignment assignment, string context) => ReadValue<double, FloatToken>(assignment, context);
+        static bool ReadBoolValue(Assignment assignment, string context) => ReadValue<bool, BooleanToken>(assignment, context);
+        static string ReadStringValue(Assignment assignment, string context) => ReadValue<string, StringToken>(assignment, context);
+
+        static T ReadValue<T, TToken>(Assignment assignment, string context) where TToken : ValueToken<T>
         {
-            if (assignment.Value is IntegerToken i)
+            if (assignment.Value is TToken t)
             {
-                return i.Value;
+                return t.Value;
             }
 
-            throw new ParsingException($"Expected {typeof(int)} for {context} but got {assignment.Value.GetType()}.");
+            throw new ParsingException($"Expected {typeof(T)} for {context} but got {assignment.Value} ({assignment.Value.Location}).");
         }
-        static double ReadDoubleValue(Assignment assignment, string context)
-        {
-            if (assignment.Value is FloatToken f)
-            {
-                return f.Value;
-            }
-
-            throw new ParsingException($"Expected {typeof(double)} for {context} but got {assignment.Value.GetType()}.");
-        }
-        static bool ReadBoolValue(Assignment assignment, string context)
-        {
-            if (assignment.Value is BooleanToken b)
-            {
-                return b.Value;
-            }
-
-            throw new ParsingException($"Expected {typeof(bool)} for {context} but got {assignment.Value.GetType()}.");
-        }
-        static string ReadStringValue(Assignment assignment, string context)
-        {
-            if (assignment.Value is StringToken s)
-            {
-                return s.Value;
-            }
-
-            throw new ParsingException($"Expected {typeof(string)} for {context} but got {assignment.Value.GetType()}.");
-        }
-
     }
 }

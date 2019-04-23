@@ -19,6 +19,8 @@ namespace UdmfParsing.Udmf.Parsing.CustomLexerWithPidgin
         {
             Value = value;
         }
+
+        public override string ToString() => $"{GetType().Name}: {Value}";
     }
 
     public sealed class IntegerToken : ValueToken<int>
