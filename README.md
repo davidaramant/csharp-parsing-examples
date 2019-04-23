@@ -23,13 +23,25 @@ EXE project to run the various parser generators and create the UDMF model.  The
 
 ### `UdmfParsing`
 
-Library project that holds the model and the guts of the various parsers.  This is pretty messy, but stuff is relatively cleanly separated into different directories.  Parsers implemented:
+Library project that holds the model and the guts of the various parsers.  This is pretty messy, but stuff is relatively cleanly separated into different directories.  
+
+#### Parsers Implemented
 
 * [Piglet](https://github.com/Dervall/Piglet) - Only uses the Piglet lexer.  The parser/AST is handwritten and is terrible.
 * [Superpower](https://github.com/datalust/superpower)
 * [Pidgin](https://github.com/benjamin-hodgson/Pidgin)
+* Custom lexer with Pidgin parser - This is the fastest option.
 * [Hime](https://cenotelie.fr/projects/hime/) - There's an issue with the grammar that makes it massively slow.  Well, probably more than one, but the one I know for sure is "`translation_unit -> global_expr+;`".  See [this issue](https://bitbucket.org/cenotelie/hime/issues/63/net-really-slow-parsing) I reported on the project Bitbucket page.
 
+#### Benchmarks
+
+These are only relevant for comparing against each other:
+
+|Map(s)|Custom Lexer + Pidgin Parser|Piglet|Pidgin - unified number parser|Pidgin|Superpower|Hime|
+|---|---:|---:|---:|---:|---:|---:|
+|Freedoom MAP28|0.27|0.43|0.9|1.8|3|18.9|
+|All Freedoom Maps|2.7|3.6|8|12|25.9|600+|
+|ZDCMP2|3|3.5|7.4|11.3|26.1|600+|
 
 ### `UdmfParsingBenchmarks`
 
