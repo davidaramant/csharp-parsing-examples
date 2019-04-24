@@ -14,7 +14,7 @@ namespace UdmfParsing.Udmf.Parsing.TotallyCustom
         {
             Identifier,
             Equals,
-            EqualsOrOpenBrace,
+            OpenBraceOrEquals,
             Value,
             Semicolon,
             CloseBraceOrIdentifier,
@@ -38,7 +38,7 @@ namespace UdmfParsing.Udmf.Parsing.TotallyCustom
                         if (token is IdentifierToken id)
                         {
                             blockName = id;
-                            expected = ExpectedToken.EqualsOrOpenBrace;
+                            expected = ExpectedToken.OpenBraceOrEquals;
                         }
                         else
                         {
@@ -55,17 +55,17 @@ namespace UdmfParsing.Udmf.Parsing.TotallyCustom
                             throw new ParsingException($"Unexpected token {token} on {token.Location}");
                         }
                         break;
-                    case ExpectedToken.EqualsOrOpenBrace:
+                    case ExpectedToken.OpenBraceOrEquals:
                         switch (token)
                         {
+                            case OpenBraceToken o:
+                                insideBlock = true;
+                                expected = ExpectedToken.CloseBraceOrIdentifier;
+                                break;
                             case EqualsToken e:
                                 assignmentName = blockName;
                                 blockName = null;
                                 expected = ExpectedToken.Value;
-                                break;
-                            case OpenBraceToken o:
-                                insideBlock = true;
-                                expected = ExpectedToken.CloseBraceOrIdentifier;
                                 break;
                             default:
                                 throw new ParsingException($"Unexpected token {token} on {token.Location}");
@@ -116,15 +116,15 @@ namespace UdmfParsing.Udmf.Parsing.TotallyCustom
                     case ExpectedToken.CloseBraceOrIdentifier:
                         switch (token)
                         {
+                            case IdentifierToken i:
+                                assignmentName = i;
+                                expected = ExpectedToken.Equals;
+                                break;
                             case CloseBraceToken cb:
                                 insideBlock = false;
                                 expected = ExpectedToken.Identifier;
                                 yield return new Block(blockName.Id, assignments.ToImmutableArray());
                                 assignments.Clear();
-                                break;
-                            case IdentifierToken i:
-                                assignmentName = i;
-                                expected = ExpectedToken.Equals;
                                 break;
                             default:
                                 throw new ParsingException($"Unexpected token {token} on {token.Location}");
