@@ -6,10 +6,11 @@ using UdmfParsing.Wad;
 
 namespace UdmfParsingBenchmarks
 {
-    [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 1, invocationCount: 1)]
+//    [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 1, invocationCount: 1)]
+    [SimpleJob(RunStrategy.Monitoring)]
     public class LoadZDCMP2Benchmarks
     {
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public MapData Piglet()
         {
             using (var reader = WadReader.Read("zdcmp2.wad"))
@@ -39,7 +40,7 @@ namespace UdmfParsingBenchmarks
             }
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public MapData TotallyCustom()
         {
             using (var reader = WadReader.Read("zdcmp2.wad"))

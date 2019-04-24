@@ -6,10 +6,11 @@ using UdmfParsing.Wad;
 
 namespace UdmfParsingBenchmarks
 {
-    [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 1, invocationCount: 1)]
+//    [SimpleJob(RunStrategy.Monitoring, launchCount: 1, warmupCount: 0, targetCount: 1, invocationCount: 1)]
+    [SimpleJob(RunStrategy.Monitoring)]
     public class LoadAllFreedoomMapsBenchmarks
     {
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public List<MapData> Piglet()
         {
             return WadLoader.LoadUsingPiglet("freedoom2-udmf.wad");
@@ -27,7 +28,7 @@ namespace UdmfParsingBenchmarks
             return WadLoader.LoadUsingCustomWithPidgin("freedoom2-udmf.wad");
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public List<MapData> TotallyCustom()
         {
             return WadLoader.LoadUsingTotallyCustom("freedoom2-udmf.wad");

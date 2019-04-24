@@ -11,7 +11,7 @@ namespace UdmfParsingBenchmarks
     [SimpleJob(RunStrategy.Monitoring)]
     public class MapLoadingBenchmarks
     {
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public MapData Piglet()
         {
             using (var wad = WadReader.Read("freedoom2-udmf.wad"))
@@ -29,7 +29,7 @@ namespace UdmfParsingBenchmarks
             }
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public MapData TotallyCustom()
         {
             using (var wad = WadReader.Read("freedoom2-udmf.wad"))
