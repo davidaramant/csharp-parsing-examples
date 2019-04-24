@@ -24,7 +24,13 @@ namespace UdmfParsingBenchmarks
         [Benchmark]
         public List<MapData> CustomLexerWithPidginParser()
         {
-            return WadLoader.LoadUsingCustom("freedoom2-udmf.wad");
+            return WadLoader.LoadUsingCustomWithPidgin("freedoom2-udmf.wad");
+        }
+
+        [Benchmark]
+        public List<MapData> TotallyCustom()
+        {
+            return WadLoader.LoadUsingTotallyCustom("freedoom2-udmf.wad");
         }
 
         [Benchmark]

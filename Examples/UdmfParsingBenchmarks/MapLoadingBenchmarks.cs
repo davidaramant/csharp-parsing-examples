@@ -25,7 +25,16 @@ namespace UdmfParsingBenchmarks
         {
             using (var wad = WadReader.Read("freedoom2-udmf.wad"))
             {
-                return MapData.LoadFromUsingCustom(wad.GetMapStream("MAP28"));
+                return MapData.LoadFromUsingCustomWithPidgin(wad.GetMapStream("MAP28"));
+            }
+        }
+
+        [Benchmark]
+        public MapData TotallyCustom()
+        {
+            using (var wad = WadReader.Read("freedoom2-udmf.wad"))
+            {
+                return MapData.LoadFromUsingTotallyCustom(wad.GetMapStream("MAP28"));
             }
         }
 

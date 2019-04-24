@@ -122,7 +122,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
                     foreach (var mapName in wadReader.GetMapNames())
                     {
                         TestContext.WriteLine(" * " + mapName);
-                        MapData.LoadFromUsingCustom(wadReader.GetMapStream(mapName));
+                        MapData.LoadFromUsingCustomWithPidgin(wadReader.GetMapStream(mapName));
                     }
                 }
             }
@@ -144,7 +144,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
 
                 stream.Position = 0;
 
-                return MapData.LoadFromUsingCustom(stream);
+                return MapData.LoadFromUsingCustomWithPidgin(stream);
             }
         }
 
@@ -152,7 +152,7 @@ namespace UdmfParsingTests.CustomLexerWithPidgin
         {
             using (var stream = new MemoryStream(Encoding.ASCII.GetBytes(rawUdmf)))
             {
-                return MapData.LoadFromUsingCustom(stream);
+                return MapData.LoadFromUsingCustomWithPidgin(stream);
             }
         }
 

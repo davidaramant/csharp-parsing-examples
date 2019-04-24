@@ -35,7 +35,17 @@ namespace UdmfParsingBenchmarks
             using (var reader = WadReader.Read("zdcmp2.wad"))
             {
                 var stream = reader.GetLumpStream(reader.Directory.First(l => l.Name == "TEXTMAP"));
-                return MapData.LoadFromUsingCustom(stream);
+                return MapData.LoadFromUsingCustomWithPidgin(stream);
+            }
+        }
+
+        [Benchmark]
+        public MapData TotallyCustom()
+        {
+            using (var reader = WadReader.Read("zdcmp2.wad"))
+            {
+                var stream = reader.GetLumpStream(reader.Directory.First(l => l.Name == "TEXTMAP"));
+                return MapData.LoadFromUsingTotallyCustom(stream);
             }
         }
 
