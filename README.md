@@ -30,18 +30,19 @@ Library project that holds the model and the guts of the various parsers.  This 
 * [Piglet](https://github.com/Dervall/Piglet) - Only uses the Piglet lexer.  The parser/AST is handwritten and is terrible.
 * [Superpower](https://github.com/datalust/superpower)
 * [Pidgin](https://github.com/benjamin-hodgson/Pidgin)
-* Custom lexer with Pidgin parser - This is the fastest option.
 * [Hime](https://cenotelie.fr/projects/hime/) - There's an issue with the grammar that makes it massively slow.  Well, probably more than one, but the one I know for sure is "`translation_unit -> global_expr+;`".  See [this issue](https://bitbucket.org/cenotelie/hime/issues/63/net-really-slow-parsing) I reported on the project Bitbucket page.
+* Custom Lexer with Pidgin Parser
+* Custom Lexer with Custom Parser
 
 #### Benchmarks
 
 The absolute times are only relevant for my laptop, but the relative times are interesting (all times are in seconds):
 
-|Map(s)|Pidgin with Custom Lexer|Piglet|Pidgin, Take 2|Pidgin|Superpower|Hime|
-|---|---:|---:|---:|---:|---:|---:|
-|Freedoom MAP28|0.3|0.4|0.9|1.8|3.0|18.9|
-|All Freedoom Maps|2.7|3.6|8.0|12.0|25.9|600+|
-|ZDCMP2|3.0|3.5|7.4|11.3|26.1|600+|
+|Map(s)|Custom Lexer + Parser|Pidgin with Custom Lexer|Piglet|Pidgin, Take 2|Pidgin|Superpower|Hime|
+|---|---:|---:|---:|---:|---:|---:|---:|
+|Freedoom MAP28|0.1|0.3|0.4|0.9|1.8|3.0|18.5|
+|All Freedoom Maps|1.1|2.7|3.6|7.8|12.0|26.3|600+|
+|ZDCMP2|1.2|3.0|3.8|7.4|11.3|26.0|600+|
 
 The first version of the Pidgin parser is only available if you dive into the history.  The speedup in the current ("take 2") version is that it has a unified "number" parser that does not have to backtrack when parsing integers & floating point numbers.
 
