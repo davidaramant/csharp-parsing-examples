@@ -23,7 +23,7 @@ EXE project to run the various parser generators and create the UDMF model.  The
 
 ### `UdmfParsing`
 
-Library project that holds the model and the guts of the various parsers.  This is pretty messy, but stuff is relatively cleanly separated into different directories.  
+Library project that holds the model and the guts of the various parsers.  This is pretty messy, but stuff is relatively cleanly separated into different directories.  All of the different parser implementations live under `Examples/UdmfParsing/Udmf/Parsing`. There’s a fair amount of code duplication between them since they’re intended to be independent of each other. 
 
 #### Parsers Implemented
 
@@ -38,7 +38,7 @@ Library project that holds the model and the guts of the various parsers.  This 
 
 The absolute times are only relevant for my laptop, but the relative times are interesting (all times are in seconds):
 
-|Map(s)|Custom Lexer + Parser|Pidgin with Custom Lexer|Piglet|Pidgin, Take 2|Pidgin|Superpower|Hime|
+|Map(s)|Custom Lexer + Parser|Custom Lexer with Pidgin|Piglet|Pidgin, Take 2|Pidgin|Superpower|Hime|
 |---|---:|---:|---:|---:|---:|---:|---:|
 |Freedoom MAP28|0.1|0.3|0.4|0.9|1.8|3.0|18.5|
 |All Freedoom Maps|1.1|2.7|3.6|7.8|12.0|26.3|600+|
@@ -49,8 +49,8 @@ The first version of the Pidgin parser is only available if you dive into the hi
 Maps:
 
 * [Freedoom](https://doomwiki.org/wiki/Freedoom) MAP28 is an example of a large map.
-* Freedoom itself (technically, "Freedoom: Phase 2") is composed of 32 maps.  This benchmark doesn't have as many trials as just the MAP28 loading, so the number is more variable.
-* [ZDCMP2](https://doomwiki.org/wiki/The_ZDoom_Community_Map_Project_"Take_2") is a _gargantuan_ level (2.7 million lines!)
+* Freedoom itself (technically, "Freedoom: Phase 2") is composed of 32 maps. Most of them are a lot smaller than MAP28.
+* [ZDCMP2](https://doomwiki.org/wiki/The_ZDoom_Community_Map_Project_"Take_2") is a single _gargantuan_ level (2.7 million lines!)
 
 ### `UdmfParsingBenchmarks`
 
